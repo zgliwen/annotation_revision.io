@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="Jim Robinson" name="author">
+    <link href=img/favicon.ico rel="shortcut icon">
+    <title>igv.js</title>
+
+</head>
+
+<body>
+
+<h1>Revision of Gene Annotation</h1>
+
+<div id="igvDiv" style="padding-top: 10px;padding-bottom: 10px; border:1px solid lightgray"></div>
+
+<script type="module">
+
+    import igv from "./igv.esm.min.js"
+
+    const options =
+        {
+			reference:{
+				id: "DY47073",
+				name: "Spombe DY47073",
+				fastaURL: "https://www.dropbox.com/scl/fi/mo0wzqdtlgx29lm1fmsxi/DY47073_v240116_combined_genome.fa?rlkey=iqh0vhznis0thlucr3p8gjutk&st=b27v9w01&dl=0",
+				indexURL: "https://www.dropbox.com/scl/fi/uqng6if5yuz44rb22uhj9/DY47073_v240116_combined_genome.fa.fai?rlkey=xj20yyptdwqvl9oqrprvnc573&st=iz1o4taj&dl=0",
+				tracks:
+					[
+						{
+							name: "Kuang Iso-Seq",
+							type: "alignment",
+							format: "cram",
+							url: "https://www.dropbox.com/scl/fi/tx6okj9ozasls84ul5925/Kuang_isoseq_merge.sort.revisedGene.cram?rlkey=j15fd7i2idtufkm0hdtnjzepm&dl=0",
+							indexURL: "https://www.dropbox.com/scl/fi/6q7hd9kc3avi5160ciuv7/Kuang_isoseq_merge.sort.revisedGene.cram.crai?rlkey=ptktimwy8th8tnfqvb0agi1o9&dl=0",
+							visibilityWindow: 15000000,
+							height: 400
+						},
+						{
+							name: "Before revision",
+							type: "annotation",
+							format: "bed",
+							url: "https://www.dropbox.com/scl/fi/y1vrs3g8o97xnvi5p8yvg/DY47073_v240116_anno_250704_beforeRevised.bed?rlkey=j2jq6g8fsh2kuaxj9cfthllop&dl=0"
+						},
+						{
+							name: "After revision",
+							type: "annotation",
+	                        format: "bed",
+		                    url: "https://www.dropbox.com/scl/fi/zzudgdopj7u23m6mimlcq/DY47073_v240116_anno_250704_afterRevised.bed?rlkey=f1rlgnhoqvnf00arleh5hco61&dl=0"
+						}
+					]
+			}
+	}
+    var igvDiv = document.getElementById("igvDiv")
+
+    igv.createBrowser(igvDiv, options)
+        .then(function (browser) {
+            console.log("Created IGV browser")
+        })
+
+</script>
+
+</body>
+
+</html>
